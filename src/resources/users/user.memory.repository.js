@@ -24,7 +24,7 @@ const putUser = async (id, user) => {
   const { name, login, password } = user;
   users[index].name = name;
   users[index].login = login;
-  users[index].password =password;
+  users[index].password = password;
   return users[index];
 };
 
