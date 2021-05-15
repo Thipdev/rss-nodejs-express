@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('./user.model');
 const usersService = require('./user.service');
+const taskServise = require('../tasks/task.service');
 
 router.route('/')
   .get(async (req, res) => {
@@ -36,6 +37,7 @@ router.route('/:id')
       res.status(404).json({ error: 'User was not found.' });
     }
 
+    await taskServise.unassignedUsers(req.params.id);
     res.status(204).end();
   });
 

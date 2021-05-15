@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const boardService = require('./board.service');
+const tasksService = require('../tasks/task.service');
 
 router.route('/')
     .get(async (req, res) => {
@@ -15,7 +16,7 @@ router.route('/:id')
     .get(async (req, res) => {
         const board = await boardService.getById(req.params.id);
         if(!board) {
-            res.status(404).json({ error: 'User was not found.' });
+            res.status(404).json({ error: 'Board was not found.' });
         } 
 
         res.json(board);
@@ -23,7 +24,7 @@ router.route('/:id')
     .put(async (req, res) => {
         const board = await boardService.updateBoard(req.params.id, req.body);
         if(!board) {
-            res.status(400).json({ error: 'User was not found.' });
+            res.status(400).json({ error: 'Board was not found.' });
         }
 
         res.json(board);
@@ -31,9 +32,10 @@ router.route('/:id')
     .delete(async (req, res) => {
         const result = await boardService.deleteBoard(req.params.id);
         if(!result) {
-            res.status(404).json({ error: 'User was not found.' });
+            res.status(404).json({ error: 'Board was not found.' });
         }
 
+        await tasksService.deleteByBoard(req.params.id);
         res.status(204).end();
     });
 
