@@ -1,5 +1,12 @@
 # RS School REST service
 
+1. Задание https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/express-rest-service.md
+2. Дата сдачи 16.05.2021 / дата дэдлайна 16.05.2021
+
+Самооценка
+все тесты успешны - 170, сущности usrs, boards, tasks разделены по модулям 30, ошибок линтера нет
+Итого 200
+
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).
