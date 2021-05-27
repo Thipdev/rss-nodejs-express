@@ -13,7 +13,7 @@ const getAll = async () => users;
 
 /**
  * Get user by id
- * @param {string} user id for find 
+ * @param {string} user id for search 
  * @returns {Promise<User>} user
  */
 const getById = async (id) => {
