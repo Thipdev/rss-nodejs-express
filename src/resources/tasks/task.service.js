@@ -1,6 +1,18 @@
 const tasksRepo = require('./task.memory.repository');
 
+/**
+ * Get all tasks by board
+ * @param {string} board id 
+ * @returns {Task[]} list of tasks
+ */
 const getAll = (boardId) => tasksRepo.getAll(boardId);
+
+/**
+ * 
+ * @param {*} boardId 
+ * @param {*} task 
+ * @returns 
+ */
 const addTask = (boardId, task) => tasksRepo.postTask(boardId, task);
 const getById = (boardId, id) => tasksRepo.getById(boardId, id);
 const updateTask = (boardId, id, task) => tasksRepo.putTask(boardId, id, task);

@@ -1,6 +1,13 @@
 const { v4: uuidv4 } = require('uuid');
 
+/**
+ * Task entity
+ */
 class Task {
+  /**
+   * Create a new instance
+   * @param {Task|void} Template for create a new task, on nothing   
+   */
   constructor({
     id = uuidv4(),
     title = 'TITLE',
