@@ -1,3 +1,7 @@
+/**
+ * Task repository
+ * @module task repository
+ */
 const Task = require('./task.model');
 
 /**

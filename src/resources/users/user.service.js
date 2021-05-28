@@ -1,3 +1,7 @@
+/**
+ * User Service
+ * @module user service
+ */
 const usersRepo = require('./user.memory.repository');
 
 /**

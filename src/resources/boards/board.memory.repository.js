@@ -1,3 +1,7 @@
+/**
+ * Board repository
+ * @module board repository
+ */
 const Board = require('./board.model');
 
 /**

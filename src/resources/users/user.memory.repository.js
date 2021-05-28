@@ -1,3 +1,7 @@
+/**
+ * User repository
+ * @module user repository
+ */
 const User = require('./user.model');
 
 /**

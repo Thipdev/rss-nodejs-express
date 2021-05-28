@@ -1,3 +1,7 @@
+/**
+ * Board service
+ * @module board service
+ */
 const boardRepo = require('./board.memory.repository');
 
 /**

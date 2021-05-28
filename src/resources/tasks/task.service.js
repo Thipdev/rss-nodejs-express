@@ -1,3 +1,7 @@
+/**
+ * Task service
+ * @module task servise
+ */
 const tasksRepo = require('./task.memory.repository');
 
 /**
