@@ -19,6 +19,7 @@ router.route('/:id')
     const user = await usersService.getById(req.params.id);
     if(!user) {
       res.status(404).json({ error: 'User was not found.' });
+      return;
     } 
 
     res.json(User.toResponse(user));
@@ -27,6 +28,7 @@ router.route('/:id')
     const user = await usersService.updateUser(req.params.id, req.body);
     if(!user) {
       res.status(400).json({ error: 'User was not found.' });
+      return;
     }
 
     res.json(User.toResponse(user));
@@ -35,6 +37,7 @@ router.route('/:id')
     const result = await usersService.deleteUser(req.params.id);
     if(!result) {
       res.status(404).json({ error: 'User was not found.' });
+      return;
     }
 
     await taskServise.unassignedUsers(req.params.id);

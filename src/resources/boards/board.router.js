@@ -17,6 +17,7 @@ router.route('/:id')
         const board = await boardService.getById(req.params.id);
         if(!board) {
             res.status(404).json({ error: 'Board was not found.' });
+            return;
         } 
 
         res.json(board);
@@ -25,6 +26,7 @@ router.route('/:id')
         const board = await boardService.updateBoard(req.params.id, req.body);
         if(!board) {
             res.status(400).json({ error: 'Board was not found.' });
+            return;
         }
 
         res.json(board);
@@ -33,6 +35,7 @@ router.route('/:id')
         const result = await boardService.deleteBoard(req.params.id);
         if(!result) {
             res.status(404).json({ error: 'Board was not found.' });
+            return;
         }
 
         await tasksService.deleteByBoard(req.params.id);

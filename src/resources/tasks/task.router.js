@@ -16,6 +16,7 @@ router.route('/:id')
         const task = await tasksService.getById(req.params.boardId, req.params.id);
         if(!task) {
             res.status(404).json({ error: 'Task was not found.' });
+            return;
         } 
       
         res.json(task);
@@ -24,6 +25,7 @@ router.route('/:id')
         const task = await tasksService.updateTask(req.params.boardId, req.params.id, req.body);
         if(!task) {
             res.status(400).json({ error: 'Task was not found.' });
+            return;
         }
 
         res.json(task);
@@ -32,6 +34,7 @@ router.route('/:id')
         const result = await tasksService.deleteTask(req.params.boardId, req.params.id);
         if(!result) {
             res.status(404).json({ error: 'Task was not found.' });
+            return;
         }
 
         res.status(204).end();
