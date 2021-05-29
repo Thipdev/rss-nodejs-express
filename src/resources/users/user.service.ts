@@ -30,14 +30,14 @@ export class UserService {
      * Update user
      * @param {string} user id for finding user for edit 
      * @param {User} edited user 
-     * @returns {User|number} edited user or -1 in case if user was not found
+     * @returns {User|number} edited user or undefined in case if user was not found
      */
     updateUser = (id: string, user: User): Promise<User|undefined> => putUser(id, user);
 
     /**
      * Delete user
      * @param {string} user id for finding user for delete 
-     * @returns {boolean|number} result of operation or -1 in case if user was not found
+     * @returns {boolean|number} result of operation or undefined in case if user was not found
      */
     deleteUser = (id: string): Promise<undefined|boolean> => deleteUser(id);
 }

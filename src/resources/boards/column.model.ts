@@ -1,15 +1,19 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 } from 'uuid';
 
 /**
  * Column entity
  */
-class Column {
+export class Column {
+  id: string;
+  title: string;
+  order: number;
+
   /**
    * Create a new instance
    * @param {Column|void} Template for create a new column, on nothing
    */
   constructor({
-    id = uuidv4(),
+    id = v4(),
     title = 'COLUMN',
     order = 0
   } = {}) {
@@ -18,5 +22,3 @@ class Column {
     this.order = order;
   }
 }
-
-module.exports = Column;

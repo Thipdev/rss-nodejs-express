@@ -1,20 +1,23 @@
-const router = require('express').Router();
-const boardService = require('./board.service');
-const tasksService = require('../tasks/task.service');
+import * as express from 'express';
+import { BoardService } from './board.service';
+//const tasksService = require('../tasks/task.service');
+
+const router = express.Router();
+const service = new BoardService();
 
 router.route('/')
-    .get(async (req, res) => {
-        const boards = await boardService.getAll();
+    .get(async (_req, res) => {
+        const boards = await service.getAll();
         res.json(boards);
     })
     .post(async (req, res) => {
-        const board = await boardService.addBoard(req.body);
+        const board = await service.addBoard(req.body);
         res.status(201).json(board);
     });
 
 router.route('/:id')
     .get(async (req, res) => {
-        const board = await boardService.getById(req.params.id);
+        const board = await service.getById(req.params.id);
         if(!board) {
             res.status(404).json({ error: 'Board was not found.' });
             return;
@@ -23,7 +26,7 @@ router.route('/:id')
         res.json(board);
     })
     .put(async (req, res) => {
-        const board = await boardService.updateBoard(req.params.id, req.body);
+        const board = await service.updateBoard(req.params.id, req.body);
         if(!board) {
             res.status(400).json({ error: 'Board was not found.' });
             return;
@@ -32,14 +35,14 @@ router.route('/:id')
         res.json(board);
     })
     .delete(async (req, res) => {
-        const result = await boardService.deleteBoard(req.params.id);
+        const result = await service.deleteBoard(req.params.id);
         if(!result) {
             res.status(404).json({ error: 'Board was not found.' });
             return;
         }
 
-        await tasksService.deleteByBoard(req.params.id);
+        //await tasksService.deleteByBoard(req.params.id);
         res.status(204).end();
     });
 
-module.exports = router;
+export { router };

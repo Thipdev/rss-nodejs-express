@@ -2,32 +2,32 @@
  * Board repository
  * @module board repository
  */
-const Board = require('./board.model');
+import { Board } from './board.model';
 
 /**
  * Boards table in memory
  */
-const boards = [];
+const boards: Board[] = [];
 
 /**
  * Get all boards
  * @returns {Promise<Board[]>} list of boards
  */
-const getAll = async () => boards;
+const getAll = async (): Promise<Board[]> => boards;
 
 /**
  * Get board by id
  * @param {string} board id for search
  * @returns {Promise<Board>} board
  */
-const getById = async (id) => boards.find((x) => x.id === id);
+const getById = async (id: string): Promise<Board|undefined> => boards.find((x) => x.id === id);
 
 /**
  * Create board
  * @param {Board} a new board 
  * @returns {Promise<Board>} created board
  */
-const postBoard = async (board) => {
+const postBoard = async (board: Board): Promise<Board> => {
     const newBoard = new Board(board);
     boards.push(newBoard);
     return newBoard;
@@ -37,22 +37,30 @@ const postBoard = async (board) => {
  * Edit board
  * @param {string} board id for finding board for edit  
  * @param {Board} edited board 
- * @returns {Promise<Board|number>} edited board or -1 in case if board was not found
+ * @returns {Promise<Board|undefined>} edited board or undefined in case if board was not found
  */
-const putBoard = async (id, board) => {
+const putBoard = async (id: string, board: Board): Promise<Board|undefined> => {
     const index = boards.findIndex((x) => x.id === id);
     if(index === -1) {
       return undefined;
     }
   
+    const targetBoard = boards[index];
+    if(targetBoard === undefined) {
+        return undefined;
+    }
+
     const { title, columns } = board;
-    boards[index].title = title;
+    targetBoard.title = title;
     columns.forEach((x) => {
-        const i = boards[index].columns.findIndex((z) => z.id === x.id);
+        const i = targetBoard.columns.findIndex((z) => z.id === x.id);
         if(i !== -1) {
             const { title: t, order } = x;
-            boards[index].columns[i].title = t;
-            boards[index].columns[i].order = order;
+            let targetColumn = targetBoard.columns[i];
+            if(targetColumn !== undefined) {
+                targetColumn.title = t;
+                targetColumn.order = order;
+            }
         }
     });
 
@@ -62,9 +70,9 @@ const putBoard = async (id, board) => {
 /**
  * Delete board
  * @param {string} board id for finding board for delete   
- * @returns {Promise<boolean|number>} result of operation or -1 in case if board was not found
+ * @returns {Promise<undefined|boolean>} result of operation or undefined in case if board was not found
  */
-const deleteBoard = async (id) => {
+const deleteBoard = async (id: string): Promise<undefined|boolean> => {
     const index = boards.findIndex((x) => x.id === id);
     if(index === -1) {
         return undefined;
@@ -74,4 +82,4 @@ const deleteBoard = async (id) => {
     return true;
 };
 
-module.exports = { getAll, getById, postBoard, deleteBoard, putBoard };
+export { getAll, getById, postBoard, deleteBoard, putBoard };

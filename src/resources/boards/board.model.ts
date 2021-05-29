@@ -1,23 +1,25 @@
-const { v4: uuidv4 } = require('uuid');
-const Column = require('./column.model');
+import { v4 } from 'uuid';
+import { Column } from './column.model';
 
 /**
  * Board entity
  */
-class Board {
+export class Board {
+  id: string;
+  title: string;
+  columns: Column[];
+
   /**
    * Create a new instance
    * @param {Board|void} Template for create a new board, on nothing  
    */
   constructor({
-    id = uuidv4(),
+    id = v4(),
     title = 'BOARD',
-    columns = []
+    columns = new Array<Column>()
   } = {}) {
     this.id = id;
     this.title = title;
     this.columns = columns.map((x) => new Column(x));
   }
 }
-
-module.exports = Board;
