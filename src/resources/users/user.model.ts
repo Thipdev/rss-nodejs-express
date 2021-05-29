@@ -1,15 +1,19 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 } from 'uuid';
 
 /**
  * User entity
  */
-class User {
+export class User {
+  id: string;
+  name: string;
+  login: string;
+  password: string;
   /**
    * Create a new instance
    * @param {User|void} Template for create a new user, on nothing 
    */
   constructor({
-    id = uuidv4(),
+    id = v4(),
     name = 'USER',
     login = 'user',
     password = 'P@55w0rd'
@@ -25,10 +29,10 @@ class User {
    * @param {User} user for create view model 
    * @returns {object} a new object without password field
    */
-  static toResponse(user) {
+  static toResponse(user : User) {
     const { id, name, login } = user;
     return { id, name, login };
   }
 }
 
-module.exports = User;
+
