@@ -1,10 +1,11 @@
 import * as express from 'express';
 import { User } from './user.model';
 import { UserService } from './user.service';
-//const taskServise = require('../tasks/task.service');
+import { TaskService } from '../tasks/task.service';
 
 const router = express.Router();
 const service = new UserService();
+const taskService = new TaskService();
 
 router.route('/')
   .get(async (_req, res) => {
@@ -43,7 +44,7 @@ router.route('/:id')
       return;
     }
 
-    //await taskServise.unassignedUsers(req.params.id);
+    await taskService.unassignedUsers(req.params.id);
     res.status(204).end();
   });
 

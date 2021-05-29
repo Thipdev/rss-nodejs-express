@@ -1,19 +1,22 @@
-const router = require('express').Router({ mergeParams: true });
-const tasksService = require('./task.service');
+import * as express from 'express';
+import { TaskService } from './task.service';
+
+const router = express.Router({ mergeParams: true });
+const service = new TaskService();
 
 router.route('/')
     .get(async (req, res) => {
-        const tasks = await tasksService.getAll(req.params.boardId);
+        const tasks = await service.getAll(req.params.boardId);
         res.json(tasks);
     })
     .post(async (req, res) => {
-        const task = await tasksService.addTask(req.params.boardId, req.body);
+        const task = await service.addTask(req.params.boardId, req.body);
         res.status(201).json(task);
     });
 
 router.route('/:id')
     .get(async (req, res) => {
-        const task = await tasksService.getById(req.params.boardId, req.params.id);
+        const task = await service.getById(req.params.boardId, req.params.id);
         if(!task) {
             res.status(404).json({ error: 'Task was not found.' });
             return;
@@ -22,7 +25,7 @@ router.route('/:id')
         res.json(task);
     })
     .put(async (req, res) => {
-        const task = await tasksService.updateTask(req.params.boardId, req.params.id, req.body);
+        const task = await service.updateTask(req.params.boardId, req.params.id, req.body);
         if(!task) {
             res.status(400).json({ error: 'Task was not found.' });
             return;
@@ -31,7 +34,7 @@ router.route('/:id')
         res.json(task);
     })
     .delete(async (req, res) => {
-        const result = await tasksService.deleteTask(req.params.boardId, req.params.id);
+        const result = await service.deleteTask(req.params.boardId, req.params.id);
         if(!result) {
             res.status(404).json({ error: 'Task was not found.' });
             return;
@@ -40,4 +43,4 @@ router.route('/:id')
         res.status(204).end();
     });
 
-module.exports = router;
+export { router };

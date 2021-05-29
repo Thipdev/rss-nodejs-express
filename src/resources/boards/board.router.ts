@@ -1,9 +1,10 @@
 import * as express from 'express';
 import { BoardService } from './board.service';
-//const tasksService = require('../tasks/task.service');
+import { TaskService } from '../tasks/task.service';
 
 const router = express.Router();
 const service = new BoardService();
+const taskService = new TaskService();
 
 router.route('/')
     .get(async (_req, res) => {
@@ -41,7 +42,7 @@ router.route('/:id')
             return;
         }
 
-        //await tasksService.deleteByBoard(req.params.id);
+        await taskService.deleteByBoard(req.params.id);
         res.status(204).end();
     });
 

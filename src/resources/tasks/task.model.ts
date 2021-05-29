@@ -1,22 +1,38 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 } from 'uuid';
 
 /**
  * Task entity
  */
-class Task {
+export class Task {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  userId: string|null;
+  boardId: string|null;
+  columnId: string|null;
+
   /**
    * Create a new instance
    * @param {Task|void} Template for create a new task, on nothing   
    */
   constructor({
-    id = uuidv4(),
+    id = v4(),
     title = 'TITLE',
     order = 0,
     description = 'DESCRIPTION',
     userId = null,
     boardId = null,
     columnId = null
-  } = {}) {
+  }: {
+    id: string,
+    title: string,
+    order: number,
+    description: string,
+    userId: string|null,
+    boardId: string|null,
+    columnId: string|null
+  }) {
     this.id = id;
     this.title = title;
     this.order = order;
@@ -26,5 +42,3 @@ class Task {
     this.columnId = columnId;
   }
 }
-
-module.exports = Task;

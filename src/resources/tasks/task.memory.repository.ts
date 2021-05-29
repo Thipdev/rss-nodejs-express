@@ -2,19 +2,19 @@
  * Task repository
  * @module task repository
  */
-const Task = require('./task.model');
+import { Task } from './task.model';
 
 /**
  * Tasks table in memory
  */
-const tasks = [];
+const tasks: Task[] = [];
 
 /**
  * Get tasks by board
  * @param {string} board id 
  * @returns {Promise<Task[]>} list of tasks
  */
-const getAll = async (boardId) => {
+const getAll = async (boardId: string): Promise<Task[]> => {
     const targetTasks = tasks.filter((x) => x.boardId === boardId);
     return targetTasks;
 };
@@ -25,7 +25,7 @@ const getAll = async (boardId) => {
  * @param {string} task id 
  * @returns {Promise<Task>} found task
  */
-const getById = async (boardId, id) => {
+const getById = async (boardId: string, id: string): Promise<Task|undefined> => {
     const task = tasks.find((x) => x.id === id && x.boardId === boardId);
     return task;
 };
@@ -36,9 +36,9 @@ const getById = async (boardId, id) => {
  * @param {Task} a new task 
  * @returns {Promise<Task>} created task
  */
-const postTask = async (boardId, task) => {
+const postTask = async (id: string, task: Task): Promise<Task> => {
     const newTask = new Task(task);
-    newTask.boardId = boardId;
+    newTask.boardId = id;
     tasks.push(newTask);
     return newTask;
 };
@@ -48,31 +48,36 @@ const postTask = async (boardId, task) => {
  * @param {string} board id 
  * @param {string} task id 
  * @param {Task} edited task 
- * @returns {Promise<Task|number>} edited task or -1 in case if task was not found
+ * @returns {Promise<Task|undefined>} edited task or undefined in case if task was not found
  */
-const putTask = async (boardId, id, task) => {
+const putTask = async (boardId: string, id: string, task: Task): Promise<Task|undefined> => {
     const index = tasks.findIndex((x) => x.id === id && x.boardId === boardId);
     if(index === -1) {
       return undefined;
     }
   
+    let targetTask = tasks[index];
+    if(targetTask === undefined) {
+        return undefined;
+    }
+
     const { title, order, description, userId, columnId, boardId: b } = task;
-    tasks[index].title = title;
-    tasks[index].order = order;
-    tasks[index].description = description;
-    tasks[index].userId = userId;
-    tasks[index].columnId = columnId;
-    tasks[index].boardId = b;
-    return tasks[index];
+    targetTask.title = title;
+    targetTask.order = order;
+    targetTask.description = description;
+    targetTask.userId = userId;
+    targetTask.columnId = columnId;
+    targetTask.boardId = b;
+    return targetTask;
 };
 
 /**
  * Delete task
  * @param {string} board id 
  * @param {string} task id 
- * @returns {Promise<boolean|number>} result of operation or -1 in case if task was not found
+ * @returns {Promise<boolean|undefined>} result of operation or undefined in case if task was not found
  */
-const deleteTask = async (boardId, id) => {
+const deleteTask = async (boardId: string, id: string): Promise<boolean|undefined> => {
     const index = tasks.findIndex((x) => x.id === id && x.boardId === boardId);
     if(index === -1) {
       return undefined;
@@ -87,7 +92,7 @@ const deleteTask = async (boardId, id) => {
  * @param {string} board id 
  * @returns {Promise<void>} void
  */
-const deleteByBoard = async (boardId) => {
+const deleteByBoard = async (boardId: string) => {
     const targetTasks = tasks.filter((x) => x.boardId === boardId);
     if(!targetTasks) {
         return;
@@ -106,7 +111,7 @@ const deleteByBoard = async (boardId) => {
  * @param {string} user id 
  * @returns {Promise<void>} void
  */
-const unassignedUsers = async (userId) => {
+const unassignedUsers = async (userId: string) => {
     const targetTasks = tasks.filter((x) => x.userId === userId);
     if(!targetTasks) {
         return;
@@ -115,9 +120,12 @@ const unassignedUsers = async (userId) => {
     targetTasks.forEach((x) => {
         const index = tasks.findIndex((z) => z === x);
         if(index !== -1) {
-            tasks[index].userId = null;
+            let task = tasks[index];
+            if(task !== undefined) {
+                task.userId = null;
+            }
         }
     });
 };
 
-module.exports = { getAll, getById, postTask, putTask, deleteTask, deleteByBoard, unassignedUsers };
+export { getAll, getById, postTask, putTask, deleteTask, deleteByBoard, unassignedUsers };
