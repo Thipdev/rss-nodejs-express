@@ -26,7 +26,13 @@ https://github.com/Thipdev/rss-nodejs-express/tree/jsdoc
 
 
 ## Вторая часть
+все тесты успешны - 170
+линтер для TS добавлен, tsconfig.json есть - 20
+есть 5 any типов - минус 100
+итого 90
 
+
+итог за обе части 150
 
 
 ## Prerequisites
