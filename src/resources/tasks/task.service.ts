@@ -51,13 +51,13 @@ export class TaskService {
      * @param {string} board id 
      * @returns {void}
      */
-    deleteByBoard = (boardId: string) => deleteByBoard(boardId);
+    deleteByBoard = (boardId: string): Promise<void> => deleteByBoard(boardId);
     
     /**
      * Unassigned users into boards
      * @param {string} user id 
      * @returns {void}
      */
-    unassignedUsers = (userId: string) => unassignedUsers(userId);
+    unassignedUsers = (userId: string): Promise<void> => unassignedUsers(userId);
 }
 

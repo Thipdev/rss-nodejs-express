@@ -92,7 +92,7 @@ const deleteTask = async (boardId: string, id: string): Promise<boolean|undefine
  * @param {string} board id 
  * @returns {Promise<void>} void
  */
-const deleteByBoard = async (boardId: string) => {
+const deleteByBoard = async (boardId: string): Promise<void> => {
     const targetTasks = tasks.filter((x) => x.boardId === boardId);
     if(!targetTasks) {
         return;
@@ -111,7 +111,7 @@ const deleteByBoard = async (boardId: string) => {
  * @param {string} user id 
  * @returns {Promise<void>} void
  */
-const unassignedUsers = async (userId: string) => {
+const unassignedUsers = async (userId: string): Promise<void> => {
     const targetTasks = tasks.filter((x) => x.userId === userId);
     if(!targetTasks) {
         return;
