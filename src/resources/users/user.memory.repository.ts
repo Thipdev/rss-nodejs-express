@@ -21,7 +21,7 @@ const getAll = async () : Promise<User[]> => users;
  * @returns {Promise<User>} user
  */
 const getById = async (id: string): Promise<User|undefined> => {
-  let user = users.find((x) => x.id === id);
+  const user = users.find((x) => x.id === id);
   return user;
 };
 
@@ -31,7 +31,7 @@ const getById = async (id: string): Promise<User|undefined> => {
  * @returns {Promise<User>} created user
  */
 const postUser = async (user: User): Promise<User> => {
-  let newUser = new User(user);
+  const newUser = new User(user);
   users.push(newUser);
   return newUser;
 };
@@ -49,7 +49,7 @@ const putUser = async (id: string, user: User): Promise<User|undefined> => {
   }
 
   const { name, login, password } = user;
-  let targetUser = users[index];
+  const targetUser = users[index];
   if(targetUser === undefined) {
     return undefined;
   }

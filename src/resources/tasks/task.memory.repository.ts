@@ -56,7 +56,7 @@ const putTask = async (boardId: string, id: string, task: Task): Promise<Task|un
       return undefined;
     }
   
-    let targetTask = tasks[index];
+    const targetTask = tasks[index];
     if(targetTask === undefined) {
         return undefined;
     }
@@ -120,7 +120,7 @@ const unassignedUsers = async (userId: string) => {
     targetTasks.forEach((x) => {
         const index = tasks.findIndex((z) => z === x);
         if(index !== -1) {
-            let task = tasks[index];
+            const task = tasks[index];
             if(task !== undefined) {
                 task.userId = null;
             }

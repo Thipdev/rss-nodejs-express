@@ -5,9 +5,13 @@ import { v4 } from 'uuid';
  */
 export class User {
   id: string;
+
   name: string;
+
   login: string;
+
   password: string;
+
   /**
    * Create a new instance
    * @param {User|void} Template for create a new user, on nothing 

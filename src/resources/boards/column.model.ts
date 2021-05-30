@@ -5,7 +5,9 @@ import { v4 } from 'uuid';
  */
 export class Column {
   id: string;
+
   title: string;
+
   order: number;
 
   /**

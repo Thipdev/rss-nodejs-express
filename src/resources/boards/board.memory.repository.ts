@@ -56,7 +56,7 @@ const putBoard = async (id: string, board: Board): Promise<Board|undefined> => {
         const i = targetBoard.columns.findIndex((z) => z.id === x.id);
         if(i !== -1) {
             const { title: t, order } = x;
-            let targetColumn = targetBoard.columns[i];
+            const targetColumn = targetBoard.columns[i];
             if(targetColumn !== undefined) {
                 targetColumn.title = t;
                 targetColumn.order = order;
