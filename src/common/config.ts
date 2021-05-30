@@ -5,7 +5,7 @@ dotenv.config({
   path: path.join(__dirname, '../../.env')
 });
 
-declare var process : {
+declare const process : {
   env: {
     PORT: number
     NODE_ENV: string,

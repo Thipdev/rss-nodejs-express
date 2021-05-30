@@ -1,7 +1,7 @@
 # RS School REST service
 
 1. Задание https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/typescript-basics.md
-2. Дата сдачи .05.2021 / дата дэдлайна 30.05.2021
+2. Дата сдачи 30.05.2021 / дата дэдлайна 30.05.2021
 3. 
 для установки необходимых пакетов выполнить 
 ```
@@ -23,6 +23,10 @@ npm run doc
 
 github tag : jsdoc
 https://github.com/Thipdev/rss-nodejs-express/tree/jsdoc
+
+
+## Вторая часть
+
 
 
 ## Prerequisites
