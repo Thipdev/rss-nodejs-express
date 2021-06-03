@@ -1,13 +1,13 @@
-import * as express from 'express';
+import { Router, Request, Response } from 'express';
 import { BoardService } from './board.service';
 import { TaskService } from '../tasks/task.service';
 
-const router = express.Router();
+const router = Router();
 const service = new BoardService();
 const taskService = new TaskService();
 
 router.route('/')
-    .get(async (_req, res) => {
+    .get(async (_req: Request, res: Response) => {
         const boards = await service.getAll();
         res.json(boards);
     })
@@ -17,7 +17,7 @@ router.route('/')
     });
 
 router.route('/:id')
-    .get(async (req, res) => {
+    .get(async (req: Request<{ id: string}>, res: Response) => {
         const board = await service.getById(req.params.id);
         if(!board) {
             res.status(404).json({ error: 'Board was not found.' });
@@ -26,7 +26,7 @@ router.route('/:id')
 
         res.json(board);
     })
-    .put(async (req, res) => {
+    .put(async (req: Request<{ id: string}>, res: Response) => {
         const board = await service.updateBoard(req.params.id, req.body);
         if(!board) {
             res.status(400).json({ error: 'Board was not found.' });
@@ -35,7 +35,7 @@ router.route('/:id')
 
         res.json(board);
     })
-    .delete(async (req, res) => {
+    .delete(async (req: Request<{ id: string}>, res: Response) => {
         const result = await service.deleteBoard(req.params.id);
         if(!result) {
             res.status(404).json({ error: 'Board was not found.' });
