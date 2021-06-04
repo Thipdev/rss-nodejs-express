@@ -7,6 +7,9 @@ import { router as boardRouter } from './resources/boards/board.router';
 import { router as taskRouter } from './resources/tasks/task.router';
 import { router as routeLogger } from './middlewares/route.logger';
 import { errorHandler } from './middlewares/error.handling';
+import { registerExceptionHandler } from './middlewares/exception.handling';
+
+registerExceptionHandler();
 
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
