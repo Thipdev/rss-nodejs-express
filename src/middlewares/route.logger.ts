@@ -1,10 +1,11 @@
 import { Router, Request, Response, NextFunction} from 'express';
-import { stdout } from 'process';
+import { catApi } from '../common/logger-config';
 
-const routeLogger = (_req: Request, _res: Response, next: NextFunction) => {
-    let date = new Date();
-    let formatted_date = date.toString() + `\n`;
-    stdout.write(formatted_date);
+const routeLogger = (req: Request, res: Response, next: NextFunction) => {
+    catApi.info(`${req.method}: ${req.url}`);
+    catApi.info(`Params: ${JSON.stringify(req.params)}`);
+    catApi.info(`Body: ${JSON.stringify(req.body)}`);
+    catApi.info(`Response status code: ${res.statusCode}`);
     next();
 };
 
