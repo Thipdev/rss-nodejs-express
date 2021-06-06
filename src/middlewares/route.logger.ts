@@ -1,15 +1,15 @@
 import { Router, Request, Response, NextFunction} from 'express';
 import { catApi } from '../common/logger-config';
 
-const routeLogger = (req: Request, res: Response, next: NextFunction) => {
+const logger = (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
     catApi.info(`${req.method}: ${req.url}`);
-    catApi.info(`Params: ${JSON.stringify(req.params)}`);
+    catApi.info(`Query params: ${JSON.stringify(req.query)}`);
     catApi.info(`Body: ${JSON.stringify(req.body)}`);
     catApi.info(`Response status code: ${res.statusCode}`);
     next();
 };
 
 var router = Router();
-router.use(routeLogger);
+router.use(logger);
 
-export { router };
+export { router, logger };
