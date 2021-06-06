@@ -9,7 +9,7 @@ const logger = (req: Request<{ id: string }>, res: Response, next: NextFunction)
     next();
 };
 
-var router = Router();
+const router = Router();
 router.use(logger);
 
 export { router, logger };
