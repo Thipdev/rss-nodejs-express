@@ -1,8 +1,15 @@
 # RS School REST service
 
-1. Задание https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/logging-error-handling.md
-2. Дата сдачи **.06.2021 / дата дэдлайна 06.006.2021
-3. Самооценка
+
+Задание https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/logging-error-handling.md
+Дата выполнения 06.06.2012, дедлайн 06.06.2012
+Самооценка
+Логирование - 20
+Централизованная обработка ошибок - 20
+Обработка uncaughtException - 10
+Обработка unhandledRejection - 10
+
+Итого 60
 
 ## Prerequisites
 
