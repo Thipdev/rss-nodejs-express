@@ -1,39 +1,15 @@
 # RS School REST service
 
-1. Задание https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/typescript-basics.md
-2. Дата сдачи 30.05.2021 / дата дэдлайна 30.05.2021
-3. 
-для установки необходимых пакетов выполнить 
-```
-npm i
-```
 
-### Первая часть
-Для генерации jsdoc документации добавлен скрипт doc
-запуск скрипта
+Задание https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/logging-error-handling.md
+Дата выполнения 06.06.2012, дедлайн 06.06.2012
+Самооценка
+Логирование - 20
+Централизованная обработка ошибок - 20
+Обработка uncaughtException - 10
+Обработка unhandledRejection - 10
 
-```
-npm run doc
-```
-
-в папке ./out будет сгенерирована документация в виде html, точка входа для просмотра index.html
-
-самооценка
-все функции покрыты описанием, скрипт геренрации создан - 60 баллов.
-
-github tag : jsdoc
-https://github.com/Thipdev/rss-nodejs-express/tree/jsdoc
-
-
-## Вторая часть
-все тесты успешны - 170
-линтер для TS добавлен, tsconfig.json есть - 20
-есть 5 any типов - минус 100
-итого 90
-
-
-итог за обе части 150
-
+Итого 60
 
 ## Prerequisites
 
